@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>ESP32 Web App</h2>
+        
+        <button id="connectBtn">Connect to ESP32</button>
+        <p id="statusText">Not Connected</p>
+
+        <div class="option-buttons">
+            <button onclick="window.location.href='feedback.html'">With Feedback</button>
+            <button onclick="window.location.href='nofeedback.html'">Without Feedback</button>
+        </div>
+
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "index.html"; // Redirect if not logged in
+        }
+
+        document.getElementById("connectBtn").addEventListener("click", function() {
+            document.getElementById("statusText").innerText = "Connected!";
+            document.getElementById("statusText").style.color = "lightgreen";
+            alert("ESP32 Connected!");
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "index.html"; // Logout
+        });
+    </script>
+</body>
+</html>
